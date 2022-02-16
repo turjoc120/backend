@@ -114,22 +114,23 @@ exports.deleteProduct = async (req, res) => {
             })
 
         } else {
+            for (let i = 0; i < result.images.length; i++) {
+                await unlinkAsync(result.images[i].path)
+
+            }
             res.status(200).json({
                 message: "product deleted successfully"
             })
         }
     });
 
-    for (let i = 0; i < result.images.length; i++) {
-        await unlinkAsync(result.images[i].path)
 
-    }
     // await result.remove();
 
-    res.json({
-        success: true,
-        message: "Product Deleted Successfully",
-    });
+    // res.json({
+    //     success: true,
+    //     message: "Product Deleted Successfully",
+    // });
 }
 
 
