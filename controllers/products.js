@@ -27,7 +27,7 @@ exports.addProduct = async (req, res) => {
 
     const result = await product.create(newProduct)
     res.json({ success: true, message: "product added successfully" })
-    console.log(newProduct);
+
 }
 
 exports.singleProduct = async (req, res) => {
@@ -118,7 +118,7 @@ exports.deleteProduct = async (req, res) => {
     }
     await result.remove();
 
-    res.status(200).json({
+    res.json({
         success: true,
         message: "Product Deleted Successfully",
     });
