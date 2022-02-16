@@ -110,14 +110,13 @@ exports.deleteProduct = async (req, res) => {
         if (err) {
             res.json({ message: "there was a error" });
         } else {
-            for (let i = 0; i < result.images.length; i++) {
-                unlinkAsync(result.images[i].path)
-
-            }
             res.json({ message: "the product deleted successfully" })
         }
     });
+    for (let i = 0; i < result.images.length; i++) {
+        await unlinkAsync(result.images[i].path)
 
+    }
 }
 
 
