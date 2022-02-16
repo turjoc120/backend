@@ -92,7 +92,6 @@ exports.updateProduct = async (req, res) => {
         }
     }
 
-
     if (!result) {
         res.json("no products found")
     }
@@ -112,7 +111,7 @@ exports.deleteProduct = async (req, res) => {
             res.json({ message: "there was a error" });
         } else {
             for (let i = 0; i < result.images.length; i++) {
-                await unlinkAsync(result.images[i].path)
+                unlinkAsync(result.images[i].path)
 
             }
             res.json({ message: "the product deleted successfully" })
