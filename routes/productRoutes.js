@@ -22,7 +22,7 @@ router.route("/search-products").post(searchProduct)
 
 router.route("/single-product/:id").get(singleProduct)
 
-router.route("/single-product/:id").delete(deleteProduct)
+router.delete("/single-product/:id", deleteProduct)
 
 // router.route("/all-products").get(searchProduct)
 
