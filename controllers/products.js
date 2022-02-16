@@ -107,16 +107,16 @@ exports.updateProduct = async (req, res) => {
 
 // delete a  product
 exports.deleteProduct = async (req, res) => {
-    const result = await product.findById(req.params.id);
+    const result = await product.deleteOne({ _id: req.params.id });
 
-    if (!result) {
-        return next(new ErrorHander("Product not found", 404));
-    }
+    // if (!result) {
+    //     return next(new ErrorHander("Product not found", 404));
+    // }
     for (let i = 0; i < result.images.length; i++) {
         await unlinkAsync(result.images[i].path)
 
     }
-    await result.remove();
+    // await result.remove();
 
     res.json({
         success: true,
