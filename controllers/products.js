@@ -106,17 +106,14 @@ exports.updateProduct = async (req, res) => {
 
 // delete a  product
 exports.deleteProduct = async (req, res) => {
-    const result = await product.findByIdAndRemove(req.params.id, function (err) {
-        if (err) {
-            res.json({ message: "there was a error" });
-        } else {
-            res.json({ message: "the product deleted successfully" })
-        }
-    });
+    const result = await product.findOneAndDelete({ _id: req.params.id })
+
+
     for (let i = 0; i < result.images.length; i++) {
         await unlinkAsync(result.images[i].path)
 
     }
+    res.json(result)
 }
 
 
